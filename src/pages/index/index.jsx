@@ -1,41 +1,48 @@
-import {useEffect, useState} from 'react';
-import {View, Icon, Editor, Button, Picker, Text} from '@tarojs/components';
-import {useReady, useDidShow, useDidHide, usePullDownRefresh,} from '@tarojs/taro';
+import { useEffect, useState } from 'react';
+import Taro, { useReady, useDidShow, useDidHide, usePullDownRefresh, } from '@tarojs/taro';
+import { ScrollView, View, Swiper, SwiperItem, Button, Navigator } from '@tarojs/components';
+
 import './index.scss';
 
 const Index = () => {
-  useEffect(() => {
-  });
-  useReady(() => {
-  });
-  useDidShow(() => {
-  });
-  useDidHide(() => {
-  });
-  usePullDownRefresh(() => {
-  });
+    useEffect( () => {
+    } );
+    useReady( () => {
+    } );
+    useDidShow( () => {
+    } );
+    useDidHide( () => {
+    } );
+    usePullDownRefresh( () => {
+    } );
 
-  const [selector] = useState(['美国', '中国', '巴西', '日本']);
-  const [selected, setSelected] = useState('美国');
+    const NavToAbout = () => {
+        Taro.navigateTo( {
+            url: '/pages/about/index'
+        } ).then();
+    }
 
-  const handlePickerOnChange = (e) => {
-    setSelected(selector[e.detail.value]);
-  };
-
-  return (
-    <View className='index'>
-      <Icon size='60' type='success' />
-      <Editor id='editor' placeholder='please input' />
-      <Button size='mini' type='default'>Button</Button>
-      <Picker mode='selector' range={selector} onChange={handlePickerOnChange}>
-        <View>
-          <Text>
-            Selected: {selected}
-          </Text>
-        </View>
-      </Picker>
-    </View>
-  );
+    return (
+        <ScrollView>
+            <View>
+                <Button onClick={NavToAbout}>Btn</Button>
+                <Swiper autoplay>
+                    <SwiperItem>
+                        <View>1</View>
+                    </SwiperItem>
+                    <SwiperItem>
+                        <View>2</View>
+                    </SwiperItem>
+                    <SwiperItem>
+                        <View>3</View>
+                    </SwiperItem>
+                </Swiper>
+                <Navigator url='/pages/about/index'>
+                    about
+                </Navigator>
+            </View>
+        </ScrollView>
+    );
 };
 
 export default Index;
