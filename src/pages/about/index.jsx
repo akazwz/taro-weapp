@@ -4,7 +4,7 @@ import './index.scss';
 const About = () => {
     return (
         <View className='about'>
-            <Text>Hello world!</Text>
+            <Text>This is About.</Text>
         </View>
     );
 }
