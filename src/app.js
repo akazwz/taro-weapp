@@ -1,24 +1,24 @@
-import React, {useEffect} from 'react';
-import {useDidShow, useDidHide} from '@tarojs/taro';
-import {Provider} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDidShow, useDidHide } from '@tarojs/taro';
+import { Provider } from 'react-redux';
 import store from './redux/store';
 import './app.scss';
 
 const App = (props) => {
-  useEffect(() => {
-  });
+    useEffect(() => {
+    });
 
-  useDidShow(() => {
-  });
+    useDidShow(() => {
+    });
 
-  useDidHide(() => {
-  });
+    useDidHide(() => {
+    });
 
-  return (
-    <Provider store={store}>
-      {props.children}
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            {props.children}
+        </Provider>
+    );
 };
 
 export default App;
