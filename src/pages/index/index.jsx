@@ -1,131 +1,94 @@
-import { useEffect, useState } from 'react';
-import Taro, {
-    useReady,
-    useDidShow,
-    useDidHide,
-    usePullDownRefresh,
-} from '@tarojs/taro';
-import {
-    View,
-} from '@tarojs/components';
-import {
-    Row,
-    Col,
-    Tabbar,
-    Navbar,
-    Button,
-    ActionSheet,
-    Dialog,
-    Toast,
-    Notify,
-} from '@taroify/core';
-import {
-    FriendsOutlined,
-    HomeOutlined, Search,
-    SettingOutlined,
-} from '@taroify/icons';
-
+import { useState } from 'react';
+import { Text, View } from '@tarojs/components';
+import { Row, Col, Button, Popup, Toast, Rate, Slider, Switch, Dialog, Notify } from '@taroify/core';
+import { Cross, Star } from '@taroify/icons';
 import './index.scss';
 
 const Index = () => {
-    const [activeKey, setActiveKey] = useState(0);
-    const [title, setTitle] = useState('WeChat');
-    const [actionSheetOpen, setActionSheetOpen] = useState(false);
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [toastOpen, setToastOpen] = useState(false);
-    const [notifyOpen, setNotifyOpen] = useState(false);
-    useEffect(() => {
-    });
-    useReady(() => {
-    });
-    useDidShow(() => {
-    });
-    useDidHide(() => {
-    });
-    usePullDownRefresh(() => {
-    });
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [toastOpen, setToastOpen] = useState(true);
+  const [rateValue, setRateValue] = useState(3);
+  const [sliderValue, setSliderValue] = useState(50);
+  const [switchChecked, setSwitchChecked] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [notifyOpen, setNotifyOpen] = useState(false);
 
-    const handleSetNavTitle = () => {
-        Taro.setNavigationBarTitle({
-            title: title,
-        }).then();
-    };
+  const handleRateOnChange = (value) => {
+    setRateValue(value);
+  };
+  return (
+    <View>
+      <Row justify='space-around'>
+        <Col span='6'>
+          <Button variant='outlined' color='primary' onClick={() => {
+            setPopupOpen(true);
+          }}
+          >Popup</Button>
+        </Col>
+        <Col span='6'>
+          <Button variant='outlined' color='primary' onClick={() => {
+            setToastOpen(true);
+          }}
+          >Toast</Button>
+        </Col>
+        <Col span='6'>
+          <Button variant='outlined' color='primary' onClick={() => {
+            setDialogOpen(false);
+          }}
+          >Dialog</Button>
+        </Col>
+      </Row>
+      <Row justify='space-around'>
+        <Col span='6'>
+          <Button variant='outlined' color='primary' onClick={() => {
+            setNotifyOpen(true);
+          }}
+          >Notify</Button>
+        </Col>
+      </Row>
+      <Rate
+        size={25}
+        color='#ffd21e'
+        voidColor='#eee'
+        voidIcon={<Star />}
+        allowHalf
+        value={rateValue}
+        touchable
+        onChange={handleRateOnChange}
+      />
+      <Slider value={sliderValue} onChange={(value) => {
+        setSliderValue(value);
+      }}
+      />
+      <Switch checked={switchChecked} onChange={() => {
+        setSwitchChecked(!switchChecked);
+      }}
+      />
 
-    const handleBtnActionSheetClick = () => {
-        setActionSheetOpen(true);
-    }
-    const handleBtnDiaLogClick = () => {
-        setDialogOpen(true);
-    }
-    const handleBtnToastClick = () => {
-        setToastOpen(true);
-        setTimeout(() => {
-            setToastOpen(false);
-        }, 3000)
-    }
-
-    return (
-        <View>
-            <Navbar title='标题'>
-                <Navbar.NavLeft>返回</Navbar.NavLeft>
-                <Navbar.NavRight icon={<Search/>}/>
-            </Navbar>
-
-            <Row justify='space-around'>
-                <Col span='8'>
-                    <Button
-                        color='primary'
-                        onClick={handleBtnActionSheetClick}
-                    >
-                        ActionSheet
-                    </Button>
-                </Col>
-                <Col span='8'>
-                    <Button
-                        color='info'
-                        onClick={handleBtnDiaLogClick}
-                    >
-                        DiaLog
-                    </Button>
-                </Col>
-                <Col span='8'>
-                    <Button
-                        color='success'
-                        onClick={handleBtnToastClick}
-                    >
-                        Toast
-                    </Button>
-                </Col>
-            </Row>
-            <ActionSheet
-                open={actionSheetOpen}
-                onSelect={() => setActionSheetOpen(false)}
-                onCancel={() => setActionSheetOpen(false)}
-                onClose={setActionSheetOpen}>
-                <ActionSheet.Header>这是一段描述信息</ActionSheet.Header>
-                <ActionSheet.Action name='选项一'/>
-                <ActionSheet.Action name='选项二'/>
-                <ActionSheet.Action name='选项三'/>
-                <ActionSheet.Button type='cancel'>取消</ActionSheet.Button>
-            </ActionSheet>
-            <Dialog open={dialogOpen} onClose={setDialogOpen}>
-                <Dialog.Header>标题</Dialog.Header>
-                <Dialog.Content>代码是写出来给人看的，附带能在机器上运行</Dialog.Content>
-                <Dialog.Actions>
-                    <Button onClick={() => setDialogOpen(false)}>确认</Button>
-                </Dialog.Actions>
-            </Dialog>
-            <Toast open={toastOpen} type='fail'>成功文案</Toast>
-            <Notify open={notifyOpen} color='primary'>通知内容</Notify>
-            <Tabbar fixed activeKey={activeKey}>
-                <Tabbar.TabItem icon={<HomeOutlined/>}/>
-                <Tabbar.TabItem icon={<Search/>}/>
-                <Tabbar.TabItem icon={<FriendsOutlined/>}/>
-                <Tabbar.TabItem icon={<SettingOutlined/>}/>
-            </Tabbar>
-        </View>
-
-    );
-};
+      {/*Popup*/}
+      <Popup open={popupOpen} rounded placement='bottom' style={{height: '30%'}} onClose={() => {
+        setPopupOpen(false);
+      }}
+      >
+        <Popup.Close>
+          <Cross />
+        </Popup.Close>
+      </Popup>
+      {/*Toast*/}
+      <Toast open={toastOpen} type='success' onClose={() => setToastOpen(false)}>
+        <Text>SUCCESS</Text>
+      </Toast>
+      {/*Dialog*/}
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+        <Dialog.Header>标题</Dialog.Header>
+        <Dialog.Content>代码是写出来给人看的，附带能在机器上运行</Dialog.Content>
+        <Dialog.Actions>
+          <Button onClick={() => setDialogOpen(false)}>确认</Button>
+        </Dialog.Actions>
+      </Dialog>
+      <Notify open={notifyOpen} color='primary' onClose={() => setNotifyOpen(false)}>notify</Notify>
+    </View>
+  )
+}
 
 export default Index;
