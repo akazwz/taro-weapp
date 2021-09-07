@@ -1,3 +1,3 @@
 export default {
-    navigationBarTitleText: 'Index'
+    navigationBarTitleText: '当前热搜'
 }

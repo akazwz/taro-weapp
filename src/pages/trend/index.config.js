@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: 'Trend'
+    navigationBarTitleText: '热搜趋势'
 }

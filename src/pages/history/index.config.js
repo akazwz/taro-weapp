@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: 'History'
+  navigationBarTitleText: '历史热搜'
 }

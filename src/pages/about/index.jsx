@@ -1,10 +1,10 @@
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import './index.scss';
 
 const About = () => {
     return (
-        <View className='about'>
-            <Text>This is About.</Text>
+        <View className='center-text'>
+            关于我们
         </View>
     );
 }
