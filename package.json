@@ -40,6 +40,7 @@
     "@taroify/core": "^0.0.12-alpha.4",
     "@taroify/icons": "^0.0.12-alpha.3",
     "@tarojs/components": "3.3.5",
+    "@tarojs/extend": "^3.3.7",
     "@tarojs/react": "3.3.5",
     "@tarojs/runtime": "3.3.5",
     "@tarojs/taro": "3.3.5",

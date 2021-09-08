@@ -1,11 +1,11 @@
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import './index.scss';
 
 const History = () => {
-    return (
-        <View className='about'>
-            <Text>This is History.</Text>
-        </View>
-    );
-}
+  return (
+    <View className='about'>
+      This is history.
+    </View>
+  );
+};
 export default History;

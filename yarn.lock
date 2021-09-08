@@ -1274,6 +1274,11 @@
     swiper "6.8.0"
     weui "^1.1.2"
 
+"@tarojs/extend@^3.3.7":
+  version "3.3.7"
+  resolved "https://registry.nlark.com/@tarojs/extend/download/@tarojs/extend-3.3.7.tgz#24f5f8c726b58ee095c4609548352270967dfe9a"
+  integrity sha1-JPX4xya1juCVxGCVSDUicJZ9/po=
+
 "@tarojs/helper@3.3.5":
   version "3.3.5"
   resolved "https://registry.nlark.com/@tarojs/helper/download/@tarojs/helper-3.3.5.tgz?cache=0&sync_timestamp=1630054590067&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Fhelper%2Fdownload%2F%40tarojs%2Fhelper-3.3.5.tgz#258600f1c53971f0ee73ef7a2173113c7bb06408"
