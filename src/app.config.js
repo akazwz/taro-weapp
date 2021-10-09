@@ -8,8 +8,8 @@ export default {
     tabBar: {
         list: [
             {
-                'iconPath': 'resource/hot.png',
-                'selectedIconPath': 'resource/hot-selected.png',
+                'iconPath': 'resource/hot-search.png',
+                'selectedIconPath': 'resource/hot-search-selected.png',
                 pagePath: 'pages/index/index',
                 text: '今'
             },
