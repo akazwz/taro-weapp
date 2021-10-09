@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from '@tarojs/components';
-import { usePullDownRefresh } from '@tarojs/runtime';
+import { usePullDownRefresh, useReady } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
 import './index.scss';
 
 
-const singleHotSearch = (data) => {
-    const {time, searches} = data;
+const SingleHotSearch = (props) => {
+    const {time, searches} = props.data;
     if ( time === '' ) {
-        return <View>Loading...</View>
+        return <View>no data...</View>
     }
 
     const list = searches.map((singleHot, index) => {
@@ -37,39 +37,26 @@ const Index = () => {
         searches: [],
     });
 
-    useEffect(() => {
-        getCurrentHotSearch().then()
-    });
+    useReady(() => {
+        getCurrentHotSearch();
+    })
 
-    const getCurrentHotSearch = async() => {
-        await Taro.request({
+    const getCurrentHotSearch = () => {
+        console.log('running');
+        Taro.request({
             url: 'https://hs.hellozwz.com/hot-searches/current',
         }).then((res) => {
             Taro.stopPullDownRefresh();
             if ( res.statusCode !== 200 ) {
-                Taro.showToast({
-                    title: '获取失败',
-                    image: 'resource/us.png',
-                    duration: 2000
-                });
                 return;
             }
             const {code, msg, data} = res.data;
             if ( code !== 2000 ) {
-                Taro.showToast({
-                    title: msg,
-                    image: 'resource/us.png',
-                    duration: 2000
-                });
                 return;
             }
             setHotData(data);
         }).catch((err) => {
-            Taro.showToast({
-                title: err,
-                image: 'resource/us.png',
-                duration: 2000
-            });
+            console.log(err);
         });
     }
 
@@ -79,12 +66,12 @@ const Index = () => {
     }).then();
 
     usePullDownRefresh(() => {
-        getCurrentHotSearch().then()
+        getCurrentHotSearch()
     });
 
     return (
         <ScrollView>
-            {singleHotSearch(hotData)}
+            <SingleHotSearch data={hotData} />
         </ScrollView>
     );
 }
