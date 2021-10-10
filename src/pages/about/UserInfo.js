@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from '@tarojs/components';
+import AtAvatar from 'taro-ui/lib/components/avatar';
 
 const UserInfo = (props) => {
     const {
@@ -13,13 +14,9 @@ const UserInfo = (props) => {
     } = props.userInfo;
     return (
         <View>
-            <View><Text>{avatarUrl}</Text></View>
-            <View><Text>{city}</Text></View>
-            <View><Text>{country}</Text></View>
-            <View><Text>{gender}</Text></View>
-            <View><Text>{language}</Text></View>
-            <View><Text>{nickName}</Text></View>
-            <View><Text>{province}</Text></View>
+            <View className='at-row at-row__justify--center'>
+                <AtAvatar circle size='large' image={avatarUrl} />
+            </View>
         </View>
     );
 }

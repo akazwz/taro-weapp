@@ -13,8 +13,6 @@ function App(props) {
     useDidHide(() => {
     })
 
-
-
     return (
         <Provider store={store}>
             {props.children}

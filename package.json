@@ -48,7 +48,8 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.4",
-    "taro-hooks": "^1.4.7"
+    "taro-hooks": "^1.4.7",
+    "taro-ui": "3.0.0-alpha.9"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",

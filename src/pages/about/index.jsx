@@ -56,6 +56,7 @@ const About = () => {
     }
     return (
         <View className='center-text'>
+
             {hasUserInfo ? (
                 <UserInfo userInfo={userInfo} />
             ) : (<View>
