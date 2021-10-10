@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { ScrollView, View } from '@tarojs/components';
-import { usePullDownRefresh, useReady } from '@tarojs/runtime';
+import { usePullDownRefresh, useReady, useTabItemTap } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
 import './index.scss';
 
@@ -39,6 +39,7 @@ const Index = () => {
 
     useReady(() => {
         getCurrentHotSearch();
+
     })
 
     const getCurrentHotSearch = () => {
@@ -67,6 +68,10 @@ const Index = () => {
 
     usePullDownRefresh(() => {
         getCurrentHotSearch()
+    });
+
+    useTabItemTap(() => {
+        Taro.vibrateShort().then()
     });
 
     return (
