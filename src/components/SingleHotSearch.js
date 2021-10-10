@@ -3,7 +3,6 @@ import { ScrollView, Text, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import AtDivider from 'taro-ui/lib/components/divider';
 import AtActivityIndicator from 'taro-ui/lib/components/activity-indicator';
-import './index.scss';
 
 const SingleHotSearch = (props) => {
     const {time, searches} = props.data;
@@ -33,7 +32,7 @@ const SingleHotSearch = (props) => {
         return (
             <View key={index}>
                 <View
-                  className='single-view'
+                  style={{marginLeft: '7px'}}
                   hoverClass={rank <= 3 ? 'single-view-hover-top' : 'single-view-hover'}
                   onClick={handleItemClick}
                 >
@@ -48,10 +47,22 @@ const SingleHotSearch = (props) => {
                     >
                         {rank}
                     </Text>
-                    <Text className='content'>
+                    <Text style={{
+                        marginLeft: '17px',
+                        fontSize: 17,
+                        fontWeight: '500',
+                    }}
+                    >
                         {showContent}
                     </Text>
-                    <Text className='hot'>{hot}</Text>
+                    <Text style={{
+                        fontWeight: '300',
+                        fontSize: 13,
+                        marginLeft: '7px',
+                    }}
+                    >
+                        {hot}
+                    </Text>
                     {tag === '' ? null : (
                         <Text style={{
                             color: '#F28241',
