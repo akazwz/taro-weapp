@@ -10,6 +10,14 @@ import SingleHotSearch from '../../components/SingleHotSearch';
 import './index.scss';
 
 const History = () => {
+    useTabItemTap(() => {
+        Taro.vibrateShort().then()
+    });
+
+    Taro.setBackgroundColor({
+        backgroundColor: '#ffffff',
+    }).then();
+
     const t = new Date(Date.now()).toLocaleDateString();
     const tArr = t.split('/')
 
@@ -32,9 +40,6 @@ const History = () => {
         searches: [],
     });
 
-    useTabItemTap(() => {
-        Taro.vibrateShort().then()
-    });
     const handleDateOnChange = (value) => {
         const day = value.detail.value;
         setDateSel(day);
