@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '关于我们'
+  navigationBarTitleText: '账号中心'
 }

@@ -1,9 +1,9 @@
 export default {
     pages: [
         'pages/index/index',
-        'pages/about/index',
-        'pages/trend/index',
         'pages/history/index',
+        'pages/trend/index',
+        'pages/about/index',
     ],
     tabBar: {
         list: [

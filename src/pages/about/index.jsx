@@ -66,6 +66,15 @@ const About = () => {
         });
         console.log(userProfile);
     }
+
+    const handleClickZWZ = () => {
+        Taro.setClipboardData({
+            data: 'akazwz',
+            success: function() {
+            }
+        }).then();
+    }
+
     return (
         <View>
             <AtMessage />
@@ -76,28 +85,48 @@ const About = () => {
             </View>)}
             <View>
                 <AtList>
-                    <AtListItem title='关于我们' arrow='right' onClick={() => setAboutUs(true)} />
+                    <AtListItem title='关于作者' arrow='right' onClick={() => setAboutUs(true)} />
                     <AtListItem title='评价一下' arrow='right' onClick={() => setRateUs(true)} />
                 </AtList>
             </View>
             <AtFloatLayout isOpened={aboutUs} title='关于我们' onClose={() => setAboutUs(false)}>
-                <View style={{textAlign: 'center', marginTop: 20}}>
-                    赵文卓
+                <View style={{marginTop: 20}}>
+                    <AtList>
+                        <AtListItem
+                          title='姓名'
+                          extraText='赵文卓'
+                        />
+                        <AtListItem
+                          title='微信号'
+                          extraText='akazwz'
+                          onClick={handleClickZWZ}
+                        />
+                        <AtListItem
+                          title='Github'
+                          extraText='akazwz'
+                          onClick={handleClickZWZ}
+                        />
+                    </AtList>
                 </View>
             </AtFloatLayout>
             <AtFloatLayout isOpened={rateUs} title='评价一下' onClose={() => setRateUs(false)}>
                 <View style={{textAlign: 'center', marginTop: 20}}>
                     <AtRate
+                      size={30}
                       value={rateValue}
                       onChange={(value) => {
-                            setRateValue(value)
+                            setRateValue(value);
+                            if ( value <= 2 ) {
+                                Taro.vibrateLong().then();
+                                return;
+                            }
+                            Taro.vibrateShort().then();
                         }}
                     />
                     <View style={{marginTop: 20}}>
                         {rateValue <= 3 ? '一般' : rateValue <= 4 ? '优秀' : '极好'}
                     </View>
                 </View>
-
             </AtFloatLayout>
         </View>
     );

@@ -9,8 +9,8 @@ const History = () => {
         Taro.vibrateShort().then()
     });
     return (
-        <View className='about'>
-            This is history.
+        <View style={{textAlign: 'center'}}>
+            敬请期待
         </View>
     );
 };

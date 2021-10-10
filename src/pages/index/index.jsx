@@ -24,6 +24,10 @@ const SingleHotSearch = (props) => {
 
     const list = searches.map((singleHot, index) => {
         const {rank, content, link, hot, tag, icon} = singleHot;
+        let showContent = content;
+        if ( content.length > 17 ) {
+            showContent = content.substr(0, 17) + '...'
+        }
         const handleItemClick = () => {
             Taro.vibrateShort().then();
             console.log(link)
@@ -41,12 +45,13 @@ const SingleHotSearch = (props) => {
                             fontWeight: rank <= 3 ? '700' : '500',
                             fontSize: 17,
                             fontStyle: 'italic',
+                            textOverflow: 'ellipsis',
                         }}
                     >
                         {rank}
                     </Text>
                     <Text className='content'>
-                        {content}
+                        {showContent}
                     </Text>
                     <Text className='hot'>{hot}</Text>
                     {tag === '' ? null : (

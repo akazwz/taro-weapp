@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View } from '@tarojs/components';
 import AtAvatar from 'taro-ui/lib/components/avatar';
-import AtTag from 'taro-ui/lib/components/tag';
 import AtList from 'taro-ui/lib/components/list';
 import AtListItem from 'taro-ui/lib/components/list/item';
 
@@ -17,7 +16,7 @@ const UserInfo = (props) => {
     } = props.userInfo;
     const area = province + ' ' + city;
     return (
-        <View>
+        <View style={{marginTop: 20}}>
             <View className='at-row at-row__justify--center'>
                 <AtAvatar circle size='large' image={avatarUrl} />
             </View>

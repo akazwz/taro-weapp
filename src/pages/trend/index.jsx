@@ -5,13 +5,14 @@ import Taro from '@tarojs/taro';
 import './index.scss';
 
 const Trend = () => {
+
     useTabItemTap(() => {
         Taro.vibrateShort().then()
     });
 
     return (
-        <View className='about'>
-            <Text>This is Trend.</Text>
+        <View style={{textAlign: 'center'}}>
+            <Text>敬请期待</Text>
         </View>
     );
 }
