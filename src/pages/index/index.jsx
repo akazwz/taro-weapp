@@ -78,10 +78,9 @@ const SingleHotSearch = (props) => {
 
     return (
         <View>
-            <AtDivider height={50}>
+            <AtDivider height={70}>
                 {time}
             </AtDivider>
-            <AtDivider height={50} />
             {list}
         </View>
     );
