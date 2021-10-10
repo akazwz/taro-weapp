@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import Taro from '@tarojs/taro';
 import { Button, View } from '@tarojs/components';
 import { useReady, useTabItemTap } from '@tarojs/runtime';
+import AtMessage from 'taro-ui/lib/components/message';
+import AtList from 'taro-ui/lib/components/list';
+import AtListItem from 'taro-ui/lib/components/list/item';
+import AtFloatLayout from 'taro-ui/lib/components/float-layout';
+import AtRate from 'taro-ui/lib/components/rate';
 import './index.scss';
 import UserInfo from './UserInfo';
 
 const About = () => {
+    const [aboutUs, setAboutUs] = useState(false);
+    const [rateUs, setRateUs] = useState(false);
+    const [rateValue, setRateValue] = useState(5);
+
     // tap vibrate
     useTabItemTap(() => {
         Taro.vibrateShort().then()
@@ -31,7 +40,10 @@ const About = () => {
                 setUserInfo(JSON.parse(info));
             }
         } catch ( e ) {
-            console.log(e);
+            Taro.atMessage({
+                'message': e,
+                'type': 'error',
+            })
         }
     });
 
@@ -55,13 +67,38 @@ const About = () => {
         console.log(userProfile);
     }
     return (
-        <View className='center-text'>
-
+        <View>
+            <AtMessage />
             {hasUserInfo ? (
                 <UserInfo userInfo={userInfo} />
             ) : (<View>
                 <Button onClick={getUserInfo}>获取授权</Button>
             </View>)}
+            <View>
+                <AtList>
+                    <AtListItem title='关于我们' arrow='right' onClick={() => setAboutUs(true)} />
+                    <AtListItem title='评价一下' arrow='right' onClick={() => setRateUs(true)} />
+                </AtList>
+            </View>
+            <AtFloatLayout isOpened={aboutUs} title='关于我们' onClose={() => setAboutUs(false)}>
+                <View style={{textAlign: 'center', marginTop: 20}}>
+                    赵文卓
+                </View>
+            </AtFloatLayout>
+            <AtFloatLayout isOpened={rateUs} title='评价一下' onClose={() => setRateUs(false)}>
+                <View style={{textAlign: 'center', marginTop: 20}}>
+                    <AtRate
+                      value={rateValue}
+                      onChange={(value) => {
+                            setRateValue(value)
+                        }}
+                    />
+                    <View style={{marginTop: 20}}>
+                        {rateValue <= 3 ? '一般' : rateValue <= 4 ? '优秀' : '极好'}
+                    </View>
+                </View>
+
+            </AtFloatLayout>
         </View>
     );
 }

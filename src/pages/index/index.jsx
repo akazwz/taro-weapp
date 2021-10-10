@@ -90,7 +90,6 @@ const Index = () => {
 
     useReady(() => {
         getCurrentHotSearch();
-
     })
 
     const getCurrentHotSearch = () => {
@@ -99,7 +98,6 @@ const Index = () => {
             url: 'https://hs.hellozwz.com/hot-searches/current',
         }).then((res) => {
             Taro.stopPullDownRefresh();
-            Taro.vibrateShort().then();
             if ( res.statusCode !== 200 ) {
                 Taro.atMessage({
                     'message': '获取失败',
@@ -120,6 +118,7 @@ const Index = () => {
                 'type': 'success',
             })
             setHotData(data);
+            Taro.vibrateShort().then();
         }).catch((err) => {
             Taro.atMessage({
                 'message': err,
