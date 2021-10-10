@@ -1,5 +1,5 @@
-@import "~taro-ui/dist/style/components/message.scss";
 @import "~taro-ui/dist/style/components/activity-indicator.scss";
+@import "~taro-ui/dist/style/components/message.scss";
 @import '~taro-ui/dist/style/components/loading.scss';
 @import "~taro-ui/dist/style/components/divider.scss";
 
@@ -34,7 +34,6 @@
 
 .single-view {
   margin-left: 7px;
-  text-overflow: ellipsis;
 }
 
 .single-view-hover-top {

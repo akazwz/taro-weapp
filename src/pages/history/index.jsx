@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Picker } from '@tarojs/components';
+import { View, Picker, ScrollView } from '@tarojs/components';
 import { useTabItemTap } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
 import AtList from 'taro-ui/lib/components/list';
 import AtListItem from 'taro-ui/lib/components/list/item';
 import AtButton from 'taro-ui/lib/components/button';
-import './index.scss';
+import AtMessage from 'taro-ui/lib/components/message';
 import SingleHotSearch from '../../components/SingleHotSearch';
+import './index.scss';
 
 const History = () => {
     const t = new Date(Date.now()).toLocaleDateString();
@@ -26,7 +27,7 @@ const History = () => {
     const [timeSel, setTimeSel] = useState('00:00');
     const [dateSel, setDateSel] = useState(today);
     const [loading, setLoading] = useState(false);
-    const [hotData, setHotData] = useState({
+    const [hData, setHData] = useState({
         time: '',
         searches: [],
     });
@@ -71,7 +72,7 @@ const History = () => {
                 'message': '成功',
                 'type': 'success',
             })
-            console.log(data);
+            setHData(data[0])
             Taro.vibrateShort().then();
         }).catch((err) => {
             Taro.atMessage({
@@ -97,15 +98,13 @@ const History = () => {
         const start = day + '-' + startHours + '-' + startMinutes;
         const stop = dateSel + '-' + timeSel.replace(/:/g, '-');
 
-        console.log(start)
-        console.log(stop)
-
         setLoading(true);
         getHistoryHotSearch(start, stop);
     };
 
     return (
         <View>
+            <AtMessage />
             <View className='at-row'>
                 <View className='at-col'>
                     <Picker mode='date' onChange={handleDateOnChange} start='2021-10-01' end={today}>
@@ -123,9 +122,9 @@ const History = () => {
                 </View>
             </View>
             <AtButton loading={loading} type='primary' onClick={handleStartSearchBtn}>开始查看</AtButton>
-            <View>
-                <SingleHotSearch data={hotData} />
-            </View>
+            <ScrollView>
+                <SingleHotSearch data={hData} />
+            </ScrollView>
         </View>
     );
 };

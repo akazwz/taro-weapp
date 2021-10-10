@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import { usePullDownRefresh, useReady, useTabItemTap } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
 import AtMessage from 'taro-ui/lib/components/message';
@@ -66,9 +66,7 @@ const Index = () => {
     return (
         <View>
             <AtMessage />
-            <ScrollView>
-                <SingleHotSearch data={hotData} />
-            </ScrollView>
+            <SingleHotSearch data={hotData} />
         </View>
     );
 }

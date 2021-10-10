@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from '@tarojs/components';
+import { ScrollView, Text, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import AtDivider from 'taro-ui/lib/components/divider';
 import AtActivityIndicator from 'taro-ui/lib/components/activity-indicator';
@@ -75,12 +75,12 @@ const SingleHotSearch = (props) => {
     });
 
     return (
-        <View>
+        <ScrollView>
             <AtDivider height={70}>
                 {time}
             </AtDivider>
             {list}
-        </View>
+        </ScrollView>
     );
 }
 
