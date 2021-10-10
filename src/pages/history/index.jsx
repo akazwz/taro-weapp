@@ -6,6 +6,7 @@ import AtList from 'taro-ui/lib/components/list';
 import AtListItem from 'taro-ui/lib/components/list/item';
 import AtButton from 'taro-ui/lib/components/button';
 import './index.scss';
+import SingleHotSearch from '../../components/SingleHotSearch';
 
 const History = () => {
     const t = new Date(Date.now()).toLocaleDateString();
@@ -25,6 +26,10 @@ const History = () => {
     const [timeSel, setTimeSel] = useState('00:00');
     const [dateSel, setDateSel] = useState(today);
     const [loading, setLoading] = useState(false);
+    const [hotData, setHotData] = useState({
+        time: '',
+        searches: [],
+    });
 
     useTabItemTap(() => {
         Taro.vibrateShort().then()
@@ -118,6 +123,9 @@ const History = () => {
                 </View>
             </View>
             <AtButton loading={loading} type='primary' onClick={handleStartSearchBtn}>开始查看</AtButton>
+            <View>
+                <SingleHotSearch data={hotData} />
+            </View>
         </View>
     );
 };
